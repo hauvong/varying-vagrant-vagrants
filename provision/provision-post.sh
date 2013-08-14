@@ -217,95 +217,114 @@ fi
 # Install req'd plugins
 if [ ! -d /srv/www/wordpress-plugins/developer ]
 then
+	printf "\nInstalling plugin: developer \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install developer --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate developer
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/jetpack ]
 then
+	printf "\nInstalling plugin: jetpack \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install jetpack --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate jetpack
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/debug-bar ]
 then
+	printf "\nInstalling plugin: debug-bar \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/debug-bar-console ]
 then
+	printf "\nInstalling plugin: debug-bar-console \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-console --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-console
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/debug-bar-cron ]
 then
+	printf "\nInstalling plugin: debug-bar-cron \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-cron --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-cron
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/debug-bar-extender ]
 then
+	printf "\nInstalling plugin: debug-bar-extender \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-extender --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-extender
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/debug-bar-super-globals ]
 then
+	printf "\nInstalling plugin: debug-bar-super-globals \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-super-globals --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-super-globals
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/log-deprecated-notices ]
 then
+	printf "\nInstalling plugin: log-deprecated-notices \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install log-deprecated-notices --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate log-deprecated-notices
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/log-viewer ]
 then
+	printf "\nInstalling plugin: log-viewer \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install log-viewer --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate log-viewer
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/mp6 ]
 then
+	printf "\nInstalling plugin: mp6 \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install mp6 --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate mp6
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/polldaddy ]
 then
+	printf "\nInstalling plugin: polldaddy \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install polldaddy --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate polldaddy
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/rewrite-rules-inspector ]
 then
+	printf "\nInstalling plugin: rewrite-rules-inspector \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install rewrite-rules-inspector --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate rewrite-rules-inspector
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/user-switching ]
 then
+	printf "\nInstalling plugin: user-switching \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install user-switching --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate user-switching
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/vip-scanner ]
 then
+	printf "\nInstalling plugin: vip-scanner \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install vip-scanner --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate vip-scanner
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/wordpress-importer ]
 then
+	printf "\nInstalling plugin: wordpress-importer \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install wordpress-importer --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate wordpress-importer
 fi
 
 if [ ! -d /srv/www/wordpress-plugins/auto-mobile-theme-switcher ]
 then
+	printf "\nInstalling plugin: auto-mobile-theme-switcher \n"
 	wp --path=/srv/www/wordpress-trunk/ plugin install auto-mobile-theme-switcher --activate
 fi
+
+printf "\nUpdating plugins...\n"
+wp --path=/srv/www/wordpress-trunk/ plugin update-all
