@@ -1,4 +1,4 @@
-# bash_profile 
+# bash_profile
 #
 # Symlinked to the vagrant user's home directory. This loads
 # the default .bashrc provided by the virtual machine, which in
@@ -21,3 +21,11 @@ fi
 # Set the WP_TESTS_DIR path directory so that we can use phpunit inside
 # plugins almost immediately.
 export WP_TESTS_DIR=/srv/www/wordpress-unit-tests/
+
+# This sets the system default editor to VIM
+# During git commit, if you ommit the -m tag, this will allow you to
+# write long (read: useful) commit messages.
+EDITOR=/usr/bin/vim
+VISUAL=/usr/bin/vim
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
