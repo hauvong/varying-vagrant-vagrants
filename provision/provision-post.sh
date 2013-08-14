@@ -42,7 +42,7 @@ maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa /srv/config/ssh/bitbuc
 chown vagrant:vagrant /home/vagrant/.ssh/bitbucket.org_id_rsa
 chmod 600 /home/vagrant/.ssh/bitbucket.org_id_rsa
 
-maybe_update_file /srv/config/ssh/config /home/vagrant/.ssh/config append
+maybe_update_file /home/vagrant/.ssh/config /srv/config/ssh/config append
 chown vagrant:vagrant /srv/config/ssh/config
 chmod 600 /srv/config/ssh/config
 
