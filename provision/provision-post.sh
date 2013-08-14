@@ -35,10 +35,19 @@ if [ -e /srv/config/wordpress-config/wp-config.php ]; then
 	mv /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/
 fi
 
+# Bitbucket SSH key
 printf "\nInstalling Bitbucket keys...\n"
 maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa.pub /srv/config/ssh/bitbucket.org_id_rsa.pub
-maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa.pub /srv/config/ssh/bitbucket.org_id_rsa.pub
+chown vagrant:vagrant /home/vagrant/.ssh/bitbucket.org_id_rsa.pub
+chmod 600 /home/vagrant/.ssh/bitbucket.org_id_rsa.pub
+
+maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa /srv/config/ssh/bitbucket.org_id_rsa
+chown vagrant:vagrant /home/vagrant/.ssh/bitbucket.org_id_rsa
+chmod 600 /home/vagrant/.ssh/bitbucket.org_id_rsa
+
 maybe_update_file /srv/config/ssh/config /home/vagrant/.ssh/config append
+chown vagrant:vagrant /srv/config/ssh/config
+chmod 600 /srv/config/ssh/config
 
 # COMPASS
 if [ ! `which compass` ]; then
