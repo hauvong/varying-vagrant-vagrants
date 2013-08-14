@@ -118,7 +118,6 @@ gen_key_main(){
 
     return 0;
 }
-
 _send_key(){
     local ID_FILE_PUB=$1;
     local USERNAME=$2;
