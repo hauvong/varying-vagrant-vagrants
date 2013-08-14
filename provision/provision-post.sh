@@ -1,3 +1,4 @@
+
 # COMPASS
 if [ ! `which compass` ]; then
     gem update --system &&
@@ -28,11 +29,11 @@ fi
 if [ ! -d /srv/www/vip/plugins ]
 then
 	printf "\nDownloading WordPress.com VIP plugins...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/plugins
+		su -c 'git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/wordpress-vip-plugins' - vagrant
 	fi
 else
 	printf "\nUpdating WordPress.com VIP plugins...\n"
@@ -44,11 +45,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-plugins ]
 then
 	printf "\nDownloading pmc-plugins...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-plugins.git /srv/www/vip/pmc-plugins
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-plugins.git /srv/www/vip/pmc-plugins' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-plugins...\n"
@@ -60,11 +61,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-variety ]
 then
 	printf "\nDownloading pmc-variety theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-variety.git /srv/www/vip/pmc-variety
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-variety.git /srv/www/vip/pmc-variety' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-variety theme...\n"
@@ -76,11 +77,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-tvline ]
 then
 	printf "\nDownloading pmc-tvline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-tvline.git /srv/www/vip/pmc-tvline
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-tvline.git /srv/www/vip/pmc-tvline' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-tvline theme...\n"
@@ -92,11 +93,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-411 ]
 then
 	printf "\nDownloading pmc-411 theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-411.git /srv/www/vip/pmc-411
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-411.git /srv/www/vip/pmc-411' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-411 theme...\n"
@@ -108,11 +109,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-hollywoodlife ]
 then
 	printf "\nDownloading pmc-hollywoodlife theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-hollywoodlife.git /srv/www/vip/pmc-hollywoodlife
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-hollywoodlife.git /srv/www/vip/pmc-hollywoodlife' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-hollywoodlife theme...\n"
@@ -124,11 +125,11 @@ fi
 if [ ! -d /srv/www/vip/bgr ]
 then
 	printf "\nDownloading bgr theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/bgr.git /srv/www/vip/bgr
+		su -c 'git clone git@bitbucket.org:penskemediacorp/bgr.git /srv/www/vip/bgr' - vagrant
 	fi
 else
 	printf "\nUpdating bgr theme...\n"
@@ -140,11 +141,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-awardsline ]
 then
 	printf "\nDownloading pmc-awardsline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-awardsline.git /srv/www/vip/pmc-awardsline
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-awardsline.git /srv/www/vip/pmc-awardsline' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-awardsline theme...\n"
@@ -156,11 +157,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-deadline ]
 then
 	printf "\nDownloading pmc-deadline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-deadline.git /srv/www/vip/pmc-deadline
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-deadline.git /srv/www/vip/pmc-deadline' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-deadline theme...\n"
@@ -172,11 +173,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-tvline-mobile ]
 then
 	printf "\nDownloading pmc-tvline-mobile theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-tvline-mobile.git /srv/www/vip/pmc-tvline-mobile
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-tvline-mobile.git /srv/www/vip/pmc-tvline-mobile' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-tvline-mobile theme...\n"
@@ -188,11 +189,11 @@ fi
 if [ ! -d /srv/www/vip/pmc-master ]
 then
 	printf "\nDownloading pmc-master theme...\n"
-	if [ ! -f /home/vagrant/.ssh/id_rsa.pub ]
+	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		git clone git@bitbucket.org:penskemediacorp/pmc-master.git /srv/www/vip/pmc-master
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-master.git /srv/www/vip/pmc-master' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-master theme...\n"
