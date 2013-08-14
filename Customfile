@@ -1,0 +1,5 @@
+config.vm.hostname = "local.wordpress-trunk.dev"
+config.hostsupdater.aliases = ["local.wordpress.dev", "awardsline.dev", "bgr.dev", "deadline.dev", "hollywoodlife.dev", "tvline.dev", "variety.dev", "variety411.dev"]
+
+# bitbucket key
+config.vm.provision :shell, :path => File.join( "provision", "bitbucket-gen-key.sh" )
