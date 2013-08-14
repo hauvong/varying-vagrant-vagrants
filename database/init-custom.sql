@@ -8,26 +8,26 @@
 # these will be similar to the following - with CREATE DATABASE and GRANT ALL,
 # but it can be any command.
 #
-CREATE DATABASE IF NOT EXISTS `411`;
-GRANT ALL PRIVILEGES ON `411`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `variety411_dev`;
+GRANT ALL PRIVILEGES ON `variety411_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `awardsline`;
-GRANT ALL PRIVILEGES ON `awardsline`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `awardsline_dev`;
+GRANT ALL PRIVILEGES ON `awardsline_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `bgr`;
-GRANT ALL PRIVILEGES ON `bgr`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `bgr_dev`;
+GRANT ALL PRIVILEGES ON `bgr_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `deadline`;
-GRANT ALL PRIVILEGES ON `deadline`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `deadline_dev`;
+GRANT ALL PRIVILEGES ON `deadline_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `hollywoodlife`;
-GRANT ALL PRIVILEGES ON `hollywoodlife`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `hollywoodlife_dev`;
+GRANT ALL PRIVILEGES ON `hollywoodlife_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `tvline`;
-GRANT ALL PRIVILEGES ON `tvline`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `tvline_dev`;
+GRANT ALL PRIVILEGES ON `tvline_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
-CREATE DATABASE IF NOT EXISTS `variety`;
-GRANT ALL PRIVILEGES ON `variety`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+CREATE DATABASE IF NOT EXISTS `variety_dev`;
+GRANT ALL PRIVILEGES ON `variety_dev`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
 # This should go last
 FLUSH PRIVILEGES;
