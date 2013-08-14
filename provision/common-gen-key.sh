@@ -80,6 +80,7 @@ record_ssh_config(){
 Host $SERVICE_NAME
   HostName $SERVICE_NAME
   PreferredAuthentications publickey
+  StrictHostKeyChecking no
   IdentityFile ${ID_FILE}" >> ${SSH_CONFIG};
 
     chmod 600 ${SSH_CONFIG};
