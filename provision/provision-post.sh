@@ -191,6 +191,7 @@ do
 			SITE_NAME="$DATA"
 		elif [ $I == 3 ]; then
 			DOMAIN="$DATA"
+			export HTTP_HOST=$DOMAIN
 		fi
 		let I++
 	done
@@ -208,8 +209,9 @@ do
 			# Install theme unit test data
 			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
 			cd /srv/www/wordpress-trunk/
-			export HTTP_HOST=$DOMAIN
 			wp theme-test install --option=skip --menus
+
+			# Activate the theme
 			wp theme activate vip/$DESTINATION_DIR
 		fi
 	else
@@ -225,7 +227,6 @@ do
 			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
 		printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
-		export HTTP_HOST=$DOMAIN
 		wp --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
 	done
 done
