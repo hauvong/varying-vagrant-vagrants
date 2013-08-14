@@ -75,6 +75,7 @@ record_ssh_config(){
     local SERVICE_NAME=$1;
     local ID_FILE=$2;
     local SSH_CONFIG=$3;
+    touch "$SSH_CONFIG"
     echo "
 # $SERVICE_NAME CONFIG
 Host $SERVICE_NAME
@@ -84,7 +85,8 @@ Host $SERVICE_NAME
   IdentityFile ${ID_FILE}" >> ${SSH_CONFIG};
 
 	CURRENT_DIR=`dirname $0`
-	mkdir -p $CURRENT_DIR/ssh
+	mkdir -p $CURRENT_DIR/config/ssh
+	touch $CURRENT_DIR/config/ssh/config
     echo "
 # $SERVICE_NAME CONFIG
 Host $SERVICE_NAME
@@ -123,7 +125,7 @@ gen_key_main(){
     record_ssh_config $SERVICE_NAME $ID_FILE $SSH_CONFIG;
 
 	CURRENT_DIR=`dirname $0`
-	mkdir -p $CURRENT_DIR/ssh
+	mkdir -p $CURRENT_DIR/config/ssh
 	cp ~/.ssh/bitbucket.org_id_rsa* $CURRENT_DIR/config/ssh/
 
     echo ;
