@@ -37,8 +37,7 @@ then
 	fi
 else
 	printf "\nUpdating WordPress.com VIP plugins...\n"
-	cd /srv/www/vip/plugins
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/plugins; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-plugins
@@ -53,8 +52,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-plugins...\n"
-	cd /srv/www/vip/pmc-plugins
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-plugins; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-variety theme
@@ -69,8 +67,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-variety theme...\n"
-	cd /srv/www/vip/pmc-variety
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-variety; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-tvline theme
@@ -85,8 +82,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-tvline theme...\n"
-	cd /srv/www/vip/pmc-tvline
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-tvline; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-411 theme
@@ -101,8 +97,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-411 theme...\n"
-	cd /srv/www/vip/pmc-411
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-411; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-hollywoodlife theme
@@ -117,8 +112,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-hollywoodlife theme...\n"
-	cd /srv/www/vip/pmc-hollywoodlife
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-hollywoodlife; git pull --rebase origin master' - vagrant
 fi
 
 # bgr theme
@@ -133,8 +127,7 @@ then
 	fi
 else
 	printf "\nUpdating bgr theme...\n"
-	cd /srv/www/vip/bgr
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/bgr; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-awardsline theme
@@ -149,8 +142,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-awardsline theme...\n"
-	cd /srv/www/vip/pmc-awardsline
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-awardsline; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-deadline theme
@@ -165,8 +157,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-deadline theme...\n"
-	cd /srv/www/vip/pmc-deadline
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-deadline; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-tvline-mobile theme
@@ -181,8 +172,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-tvline-mobile theme...\n"
-	cd /srv/www/vip/pmc-tvline-mobile
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-tvline-mobile; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-master theme
@@ -197,8 +187,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-master theme...\n"
-	cd /srv/www/vip/pmc-master
-	git pull --rebase origin master
+	su -c 'cd /srv/www/vip/pmc-master; git pull --rebase origin master' - vagrant
 fi
 
 # Set up shared plugins directory
