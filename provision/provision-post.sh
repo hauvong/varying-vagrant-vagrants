@@ -1,6 +1,6 @@
 maybe_update_file(){
-	local LOCAL_FILE=$1
-	local SOURCE_FILE=$2
+	local SOURCE_FILE=$1
+	local LOCAL_FILE=$2
 	local APPEND=$3
 	printf "\nChecking if $SOURCE_FILE needs installation or update...\n"
 	if [ ! -e "$SOURCE_FILE" ]; then
@@ -34,15 +34,15 @@ maybe_update_file /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-
 
 # Bitbucket SSH key
 printf "\nInstalling Bitbucket keys...\n"
-maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa.pub /srv/config/ssh/bitbucket.org_id_rsa.pub
+maybe_update_file /srv/config/ssh/bitbucket.org_id_rsa.pub /home/vagrant/.ssh/bitbucket.org_id_rsa.pub
 chown vagrant:vagrant /home/vagrant/.ssh/bitbucket.org_id_rsa.pub
 chmod 600 /home/vagrant/.ssh/bitbucket.org_id_rsa.pub
 
-maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa /srv/config/ssh/bitbucket.org_id_rsa
+maybe_update_file /srv/config/ssh/bitbucket.org_id_rsa /home/vagrant/.ssh/bitbucket.org_id_rsa
 chown vagrant:vagrant /home/vagrant/.ssh/bitbucket.org_id_rsa
 chmod 600 /home/vagrant/.ssh/bitbucket.org_id_rsa
 
-maybe_update_file /home/vagrant/.ssh/config /srv/config/ssh/config append
+maybe_update_file /srv/config/ssh/config /home/vagrant/.ssh/config append
 chown vagrant:vagrant /srv/config/ssh/config
 chmod 600 /srv/config/ssh/config
 
