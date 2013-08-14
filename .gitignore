@@ -6,15 +6,17 @@
 /.vagrant
 
 # This is a file intended for hooking in a custom Vagrant configuration on up
-/Customfile
+# PMC: Un-ignoring this file, we use it for our custom setup
+# /Customfile
 
 # Allow for custom provisioning scripts that are not included with the repo
-/provision/provision-custom.sh
-/provision/provision-pre.sh
-/provision/provision-post.sh
+# PMC: Un-ignoring this file, we use it for our custom setup
+# /provision/provision-custom.sh
+# /provision/provision-pre.sh
+# /provision/provision-post.sh
 
 # No need to share individual site configs with each other
-/config/nginx-config/sites/*.conf
+# /config/nginx-config/sites/*.conf
 
 # No need to share our mysql data with each other
 /database/data/*
@@ -23,8 +25,8 @@
 /www/*
 
 # And no need to share individual SQL files with each other
-*.sql
-*.sql.gz
+# *.sql
+# *.sql.gz
 
 # BUT....
 
