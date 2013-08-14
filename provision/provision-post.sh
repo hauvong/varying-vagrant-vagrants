@@ -208,10 +208,12 @@ do
 
 			# Install theme unit test data
 			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
+			printf "\nInstalling theme unit test data for $DOMAIN...\n"
 			cd /srv/www/wordpress-trunk/
 			wp theme-test install --option=skip --menus
 
 			# Activate the theme
+			printf "\nActivating $REPO theme on $DOMAIN...\n"
 			wp theme activate vip/$DESTINATION_DIR
 		fi
 	else
