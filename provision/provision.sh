@@ -340,7 +340,7 @@ then
 	else
 		printf "\nUpdating webgrind....\n"
 		cd /srv/www/default/webgrind
-		git pull --rebase origin master
+		git pull origin master
 	fi
 
 	# Install and configure the latest stable version of WordPress
