@@ -35,7 +35,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/plugins
 	fi
 else
-	printf "\Updating WordPress.com VIP plugins...\n"
+	printf "\nUpdating WordPress.com VIP plugins...\n"
 	cd /srv/www/vip/plugins
 	git pull --rebase origin master
 fi
@@ -51,7 +51,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-plugins.git /srv/www/vip/pmc-plugins
 	fi
 else
-	printf "\Updating pmc-plugins...\n"
+	printf "\nUpdating pmc-plugins...\n"
 	cd /srv/www/vip/pmc-plugins
 	git pull --rebase origin master
 fi
@@ -67,7 +67,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-variety.git /srv/www/vip/pmc-variety
 	fi
 else
-	printf "\Updating pmc-variety theme...\n"
+	printf "\nUpdating pmc-variety theme...\n"
 	cd /srv/www/vip/pmc-variety
 	git pull --rebase origin master
 fi
@@ -83,7 +83,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-tvline.git /srv/www/vip/pmc-tvline
 	fi
 else
-	printf "\Updating pmc-tvline theme...\n"
+	printf "\nUpdating pmc-tvline theme...\n"
 	cd /srv/www/vip/pmc-tvline
 	git pull --rebase origin master
 fi
@@ -99,7 +99,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-411.git /srv/www/vip/pmc-411
 	fi
 else
-	printf "\Updating pmc-411 theme...\n"
+	printf "\nUpdating pmc-411 theme...\n"
 	cd /srv/www/vip/pmc-411
 	git pull --rebase origin master
 fi
@@ -115,7 +115,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-hollywoodlife.git /srv/www/vip/pmc-hollywoodlife
 	fi
 else
-	printf "\Updating pmc-hollywoodlife theme...\n"
+	printf "\nUpdating pmc-hollywoodlife theme...\n"
 	cd /srv/www/vip/pmc-hollywoodlife
 	git pull --rebase origin master
 fi
@@ -131,7 +131,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/bgr.git /srv/www/vip/bgr
 	fi
 else
-	printf "\Updating bgr theme...\n"
+	printf "\nUpdating bgr theme...\n"
 	cd /srv/www/vip/bgr
 	git pull --rebase origin master
 fi
@@ -147,7 +147,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-awardsline.git /srv/www/vip/pmc-awardsline
 	fi
 else
-	printf "\Updating pmc-awardsline theme...\n"
+	printf "\nUpdating pmc-awardsline theme...\n"
 	cd /srv/www/vip/pmc-awardsline
 	git pull --rebase origin master
 fi
@@ -163,7 +163,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-deadline.git /srv/www/vip/pmc-deadline
 	fi
 else
-	printf "\Updating pmc-deadline theme...\n"
+	printf "\nUpdating pmc-deadline theme...\n"
 	cd /srv/www/vip/pmc-deadline
 	git pull --rebase origin master
 fi
@@ -179,7 +179,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-tvline-mobile.git /srv/www/vip/pmc-tvline-mobile
 	fi
 else
-	printf "\Updating pmc-tvline-mobile theme...\n"
+	printf "\nUpdating pmc-tvline-mobile theme...\n"
 	cd /srv/www/vip/pmc-tvline-mobile
 	git pull --rebase origin master
 fi
@@ -195,7 +195,7 @@ then
 		git clone git@bitbucket.org:penskemediacorp/pmc-master.git /srv/www/vip/pmc-master
 	fi
 else
-	printf "\Updating pmc-master theme...\n"
+	printf "\nUpdating pmc-master theme...\n"
 	cd /srv/www/vip/pmc-master
 	git pull --rebase origin master
 fi
@@ -218,6 +218,7 @@ if [ ! -d /srv/www/wordpress-plugins/developer ]
 then
 	wp --path=/srv/www/wordpress-trunk/ plugin install developer --activate
 	wp --path=/srv/www/wordpress-default/ plugin activate developer
+fi
 
 if [ ! -d /srv/www/wordpress-plugins/jetpack ]
 then
