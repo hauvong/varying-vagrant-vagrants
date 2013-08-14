@@ -30,10 +30,7 @@ maybe_update_file(){
 }
 
 # Replace the default wp-config.php
-if [ -e /srv/config/wordpress-config/wp-config.php ]; then
-	printf "\nUpdating /srv/www/wordpress-trunk/wp-config.php...\n"
-	mv /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/
-fi
+maybe_update_file /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/wp-config.php
 
 # Bitbucket SSH key
 printf "\nInstalling Bitbucket keys...\n"
