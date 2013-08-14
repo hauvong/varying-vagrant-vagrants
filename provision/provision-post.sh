@@ -166,8 +166,8 @@ do
 			# Install theme unit test data
 			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
 			cd /srv/www/wordpress-trunk/
+			export HTTP_HOST=$DOMAIN
 			wp theme-test install --option=skip --menus
-
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
