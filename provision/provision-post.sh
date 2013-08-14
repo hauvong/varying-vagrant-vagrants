@@ -1,3 +1,34 @@
+maybe_update_file(){
+	local LOCAL_FILE=$1
+	local SOURCE_FILE=$2
+	local APPEND=$3
+	printf "\nChecking if $SOURCE_FILE needs installation or update...\n"
+	if [ ! -e "$SOURCE_FILE" ]; then
+		printf "Aborting test: source file does not exist: $SOURCE_FILE\n"
+		return 1;
+	elif [ ! -e "$LOCAL_FILE" ]; then
+		printf "Destination file does not exist: $LOCAL_FILE\n"
+		printf "Copying $SOURCE_FILE -> $LOCAL_FILE...\n"
+		cp -p $SOURCE_FILE $LOCAL_FILE
+		return $?;
+	else
+		HAS_DIFF=`diff --brief $LOCAL_FILE $SOURCE_FILE`
+		if [ ! -z "$HAS_DIFF" ]; then
+			printf "$HAS_DIFF\n"
+			printf "Updating $LOCAL_FILE...\n"
+			if [ -z "$APPEND" ]; then
+				cp -p $SOURCE_FILE $LOCAL_FILE
+			else
+				cat "$SOURCE_FILE" >> "$LOCAL_FILE"
+			fi
+			return $?;
+		else
+			printf "No installation or update is needed.\n"
+			return 0;
+		fi
+	fi
+}
+
 # Replace the default wp-config.php
 if [ -e /srv/config/wordpress-config/wp-config.php ]; then
 	printf "\nUpdating /srv/www/wordpress-trunk/wp-config.php...\n"
@@ -5,9 +36,9 @@ if [ -e /srv/config/wordpress-config/wp-config.php ]; then
 fi
 
 printf "\nInstalling Bitbucket keys...\n"
-cp /srv/config/ssh/bitbucket.org_id_rsa /home/vagrant/.ssh/
-cp /srv/config/ssh/bitbucket.org_id_rsa.pub /home/vagrant/.ssh/
-cat /srv/config/ssh/config >> /home/vagrant/.ssh/config
+maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa.pub /srv/config/ssh/bitbucket.org_id_rsa.pub
+maybe_update_file /home/vagrant/.ssh/bitbucket.org_id_rsa.pub /srv/config/ssh/bitbucket.org_id_rsa.pub
+maybe_update_file /srv/config/ssh/config /home/vagrant/.ssh/config append
 
 # COMPASS
 if [ ! `which compass` ]; then
