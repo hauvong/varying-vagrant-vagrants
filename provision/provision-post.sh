@@ -1,7 +1,7 @@
 # Replace the default wp-config.php
-if [ -f /srv/www/config/wp-config.php ]; then
+if [ -e /srv/config/wordpress-config/wp-config.php ]; then
 	printf "\nUpdating /srv/www/wordpress-trunk/wp-config.php...\n"
-	mv /srv/www/config/wp-config.php /srv/www/wordpress-trunk/
+	mv /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/
 fi
 
 # COMPASS
