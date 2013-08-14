@@ -210,6 +210,7 @@ do
 			cd /srv/www/wordpress-trunk/
 			export HTTP_HOST=$DOMAIN
 			wp theme-test install --option=skip --menus
+			wp theme activate vip/$DESTINATION_DIR
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
