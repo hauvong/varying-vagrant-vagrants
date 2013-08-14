@@ -33,7 +33,7 @@ then
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/wordpress-vip-plugins' - vagrant
+		su -c 'git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/plugins' - vagrant
 	fi
 else
 	printf "\nUpdating WordPress.com VIP plugins...\n"
