@@ -28,6 +28,9 @@
 # *.sql
 # *.sql.gz
 
+# PMC: Ignoring this file, we use it for our custom setup
+/config/ssh
+
 # BUT....
 
 # We do have some default nginx configs that should be included

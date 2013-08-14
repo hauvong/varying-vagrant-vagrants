@@ -4,6 +4,11 @@ if [ -e /srv/config/wordpress-config/wp-config.php ]; then
 	mv /srv/config/wordpress-config/wp-config.php /srv/www/wordpress-trunk/
 fi
 
+printf "\nInstalling Bitbucket keys...\n"
+cp /srv/config/ssh/bitbucket.org_id_rsa /home/vagrant/.ssh/
+cp /srv/config/ssh/bitbucket.org_id_rsa.pub /home/vagrant/.ssh/
+cat /srv/config/ssh/config >> /home/vagrant/.ssh/config
+
 # COMPASS
 if [ ! `which compass` ]; then
 	printf "\nInstalling SASS and Compass...\n"

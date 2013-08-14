@@ -83,6 +83,16 @@ Host $SERVICE_NAME
   StrictHostKeyChecking no
   IdentityFile ${ID_FILE}" >> ${SSH_CONFIG};
 
+	CURRENT_DIR=`dirname $0`
+	mkdir -p $CURRENT_DIR/ssh
+    echo "
+# $SERVICE_NAME CONFIG
+Host $SERVICE_NAME
+  HostName $SERVICE_NAME
+  PreferredAuthentications publickey
+  StrictHostKeyChecking no
+  IdentityFile /home/vagrant/.ssh/${SERVICE_NAME}_id_rsa" >> $CURRENT_DIR/config/ssh/config;
+
     chmod 600 ${SSH_CONFIG};
     return 0;
 }
@@ -111,6 +121,10 @@ gen_key_main(){
     fi;
 
     record_ssh_config $SERVICE_NAME $ID_FILE $SSH_CONFIG;
+
+	CURRENT_DIR=`dirname $0`
+	mkdir -p $CURRENT_DIR/ssh
+	cp ~/.ssh/bitbucket.org_id_rsa* $CURRENT_DIR/config/ssh/
 
     echo ;
     echo OK;
