@@ -221,8 +221,10 @@ do
 		if [ ! -d "/srv/www/wordpress-plugins/$PLUGIN" ]
 		then
 			printf "\nInstalling plugin: $PLUGIN\n"
-			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN --activate
-			wp --path=/srv/www/wordpress-default/ plugin activate $PLUGIN
+			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
+		printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
+		export HTTP_HOST=$DOMAIN
+		wp --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
 	done
 done
