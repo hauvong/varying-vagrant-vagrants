@@ -319,6 +319,14 @@ then
 		git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
 		cd /srv/www/wp-cli
 		composer install
+
+		# Add the WP-CLI Package Index
+		composer config repositories.wp-cli composer http://wp-cli.org/package-index/
+
+		# Install the wp-cli-theme-test-command package
+		# https://github.com/pixline/wp-cli-theme-test-command
+		composer require pixline/wp-cli-theme-test-command=dev-master
+
 	else
 		printf "\nUpdating wp-cli....\n"
 		cd /srv/www/wp-cli
