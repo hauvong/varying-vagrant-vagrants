@@ -28,3 +28,6 @@ GRANT ALL PRIVILEGES ON `tvline`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
 
 CREATE DATABASE IF NOT EXISTS `variety`;
 GRANT ALL PRIVILEGES ON `variety`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';
+
+# This should go last
+FLUSH PRIVILEGES;
