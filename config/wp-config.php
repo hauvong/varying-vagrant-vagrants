@@ -11,6 +11,10 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
+if ( ! isset($_SERVER['HTTP_HOST']) ) {
+	$_SERVER['HTTP_HOST'] = 'local.wordpress-trunk.dev';
+}
+
 if ( in_array( $_SERVER['HTTP_HOST'], array( 'local.wordpress-trunk.dev', 'local.wordpress.dev' ) ) ) {
 	$db_name = 'wordpress_trunk';
 } else {
