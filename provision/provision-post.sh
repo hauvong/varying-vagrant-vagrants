@@ -1,3 +1,7 @@
+# Replace the default wp-config.php
+if [ -f /srv/www/config/wp-config.php ]; then
+	mv /srv/www/config/wp-config.php /srv/www/wordpress-trunk/
+fi
 
 # COMPASS
 if [ ! `which compass` ]; then
@@ -55,111 +59,6 @@ else
 	su -c 'cd /srv/www/vip/pmc-plugins; git pull --rebase origin master' - vagrant
 fi
 
-# pmc-variety theme
-if [ ! -d /srv/www/vip/pmc-variety ]
-then
-	printf "\nDownloading pmc-variety theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-variety.git /srv/www/vip/pmc-variety' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-variety theme...\n"
-	su -c 'cd /srv/www/vip/pmc-variety; git pull --rebase origin master' - vagrant
-fi
-
-# pmc-tvline theme
-if [ ! -d /srv/www/vip/pmc-tvline ]
-then
-	printf "\nDownloading pmc-tvline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-tvline.git /srv/www/vip/pmc-tvline' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-tvline theme...\n"
-	su -c 'cd /srv/www/vip/pmc-tvline; git pull --rebase origin master' - vagrant
-fi
-
-# pmc-411 theme
-if [ ! -d /srv/www/vip/pmc-411 ]
-then
-	printf "\nDownloading pmc-411 theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-411.git /srv/www/vip/pmc-411' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-411 theme...\n"
-	su -c 'cd /srv/www/vip/pmc-411; git pull --rebase origin master' - vagrant
-fi
-
-# pmc-hollywoodlife theme
-if [ ! -d /srv/www/vip/pmc-hollywoodlife ]
-then
-	printf "\nDownloading pmc-hollywoodlife theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-hollywoodlife.git /srv/www/vip/pmc-hollywoodlife' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-hollywoodlife theme...\n"
-	su -c 'cd /srv/www/vip/pmc-hollywoodlife; git pull --rebase origin master' - vagrant
-fi
-
-# bgr theme
-if [ ! -d /srv/www/vip/bgr ]
-then
-	printf "\nDownloading bgr theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/bgr.git /srv/www/vip/bgr' - vagrant
-	fi
-else
-	printf "\nUpdating bgr theme...\n"
-	su -c 'cd /srv/www/vip/bgr; git pull --rebase origin master' - vagrant
-fi
-
-# pmc-awardsline theme
-if [ ! -d /srv/www/vip/pmc-awardsline ]
-then
-	printf "\nDownloading pmc-awardsline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-awardsline.git /srv/www/vip/pmc-awardsline' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-awardsline theme...\n"
-	su -c 'cd /srv/www/vip/pmc-awardsline; git pull --rebase origin master' - vagrant
-fi
-
-# pmc-deadline theme
-if [ ! -d /srv/www/vip/pmc-deadline ]
-then
-	printf "\nDownloading pmc-deadline theme...\n"
-	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
-	then
-		printf "\nSkipping this step, SSH key has not been created.\n"
-	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-deadline.git /srv/www/vip/pmc-deadline' - vagrant
-	fi
-else
-	printf "\nUpdating pmc-deadline theme...\n"
-	su -c 'cd /srv/www/vip/pmc-deadline; git pull --rebase origin master' - vagrant
-fi
-
 # pmc-tvline-mobile theme
 if [ ! -d /srv/www/vip/pmc-tvline-mobile ]
 then
@@ -203,117 +102,77 @@ then
 	svn up /srv/www/wordpress-default/wp-content/plugins
 fi
 
-# Install req'd plugins
-if [ ! -d /srv/www/wordpress-plugins/developer ]
-then
-	printf "\nInstalling plugin: developer \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install developer --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate developer
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/jetpack ]
-then
-	printf "\nInstalling plugin: jetpack \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install jetpack --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate jetpack
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/debug-bar ]
-then
-	printf "\nInstalling plugin: debug-bar \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/debug-bar-console ]
-then
-	printf "\nInstalling plugin: debug-bar-console \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-console --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-console
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/debug-bar-cron ]
-then
-	printf "\nInstalling plugin: debug-bar-cron \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-cron --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-cron
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/debug-bar-extender ]
-then
-	printf "\nInstalling plugin: debug-bar-extender \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-extender --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-extender
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/debug-bar-super-globals ]
-then
-	printf "\nInstalling plugin: debug-bar-super-globals \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install debug-bar-super-globals --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate debug-bar-super-globals
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/log-deprecated-notices ]
-then
-	printf "\nInstalling plugin: log-deprecated-notices \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install log-deprecated-notices --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate log-deprecated-notices
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/log-viewer ]
-then
-	printf "\nInstalling plugin: log-viewer \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install log-viewer --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate log-viewer
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/mp6 ]
-then
-	printf "\nInstalling plugin: mp6 \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install mp6 --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate mp6
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/polldaddy ]
-then
-	printf "\nInstalling plugin: polldaddy \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install polldaddy --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate polldaddy
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/rewrite-rules-inspector ]
-then
-	printf "\nInstalling plugin: rewrite-rules-inspector \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install rewrite-rules-inspector --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate rewrite-rules-inspector
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/user-switching ]
-then
-	printf "\nInstalling plugin: user-switching \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install user-switching --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate user-switching
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/vip-scanner ]
-then
-	printf "\nInstalling plugin: vip-scanner \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install vip-scanner --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate vip-scanner
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/wordpress-importer ]
-then
-	printf "\nInstalling plugin: wordpress-importer \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install wordpress-importer --activate
-	wp --path=/srv/www/wordpress-default/ plugin activate wordpress-importer
-fi
-
-if [ ! -d /srv/www/wordpress-plugins/auto-mobile-theme-switcher ]
-then
-	printf "\nInstalling plugin: auto-mobile-theme-switcher \n"
-	wp --path=/srv/www/wordpress-trunk/ plugin install auto-mobile-theme-switcher --activate
-fi
-
 printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
+
+PMC_SITES=(
+	"bgr,bgr,BGR,bgr.dev"
+	"pmc-411,pmc-411,Variety411,variety411.dev"
+	"pmc-awardsline,pmc-awardsline,Awardsline,awardsline.dev"
+	"pmc-deadline,pmc-deadline,Deadline,deadline.dev"
+	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,hollywoodlife.dev"
+	"pmc-tvline,pmc-tvline,TVLine,tvline.dev"
+	"pmc-variety,pmc-variety,Variety,variety.dev"
+	)
+PLUGINS=(
+	"debug-bar-console"
+	"debug-bar-cron"
+	"debug-bar-extender"
+	"debug-bar-super-globals"
+	"debug-bar"
+	"developer"
+	"jetpack"
+	"log-deprecated-notices"
+	"log-viewer"
+	"mp6"
+	"polldaddy"
+	"regenerate-thumbnails"
+	"rewrite-rules-inspector"
+	"user-switching"
+	"vip-scanner"
+	"vip-scanner"
+	"wordpress-importer"
+	)
+
+for ROW in "${PMC_SITES[@]}"
+do
+	IFS=',' read -ra SITE_DATA <<< "$ROW"
+	I=0
+	for DATA in "${SITE_DATA[@]}"; do
+		if [ $I == 0 ]; then
+			REPO="$DATA"
+		elif [ $I == 1 ]; then
+			DESTINATION_DIR="$DATA"
+		elif [ $I == 2 ]; then
+			SITE_NAME="$DATA"
+		elif [ $I == 3 ]; then
+			DOMAIN="$DATA"
+		fi
+		let I++
+	done
+
+	if [ ! -d "/srv/www/vip/$DESTINATION_DIR" ]
+	then
+		printf "\nDownloading $REPO theme...\n"
+		if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
+		then
+			printf "\nSkipping this step, SSH key has not been created.\n"
+		else
+			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/vip/'$DESTINATION_DIR'' - vagrant
+			wp core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
+		fi
+	else
+		printf "\nUpdating $REPO theme...\n"
+		su -c 'cd /srv/www/vip/'$DESTINATION_DIR'; git pull --rebase origin master' - vagrant
+	fi
+
+	for PLUGIN in "${PLUGINS[@]}"
+	do
+		if [ ! -d "/srv/www/wordpress-plugins/$PLUGIN" ]
+		then
+			printf "\nInstalling plugin: $PLUGIN\n"
+			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN --activate
+			wp --path=/srv/www/wordpress-default/ plugin activate $PLUGIN
+		fi
+	done
+done
