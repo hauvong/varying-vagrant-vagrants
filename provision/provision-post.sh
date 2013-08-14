@@ -162,6 +162,12 @@ do
 		else
 			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/vip/'$DESTINATION_DIR'' - vagrant
 			wp core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
+
+			# Install theme unit test data
+			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
+			cd /srv/www/wordpress-trunk/
+			wp theme-test install --option=skip --menus
+
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
