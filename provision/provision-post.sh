@@ -216,7 +216,7 @@ do
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
-		su -c 'cd /srv/www/vip/'$DESTINATION_DIR'; git pull --rebase origin master' - vagrant
+		su -c 'cd /srv/www/vip/'$DESTINATION_DIR'; git pull' - vagrant
 	fi
 
 	for PLUGIN in "${PLUGINS[@]}"
