@@ -1,10 +1,12 @@
 # Replace the default wp-config.php
 if [ -f /srv/www/config/wp-config.php ]; then
+	printf "\nUpdating /srv/www/wordpress-trunk/wp-config.php...\n"
 	mv /srv/www/config/wp-config.php /srv/www/wordpress-trunk/
 fi
 
 # COMPASS
 if [ ! `which compass` ]; then
+	printf "\nInstalling SASS and Compass...\n"
     gem update --system &&
     gem install sass --version 3.1.1
     gem install compass --version 0.11.1;
