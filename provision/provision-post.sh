@@ -146,6 +146,12 @@ then
 	svn up /srv/www/wordpress-default/wp-content/plugins
 fi
 
+# Set up mu-plugins
+if [ -L /srv/www/wordpress-trunk/wp-content/mu-plugins ]; then
+	printf "\nLinking mu-plugins...\n"
+	ln -sf /srv/config/wordpress-config/mu-plugins /srv/www/wordpress-trunk/wp-content/mu-plugins
+fi
+
 printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
 
