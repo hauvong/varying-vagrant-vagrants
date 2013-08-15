@@ -2,7 +2,8 @@
 
 Varying Vagrant Vagrants is an evolving [Vagrant](http://vagrantup.com) configuration focused on [WordPress](http://wordpress.org) development.
 
-* **Contributing**:
+### Contributing
+
 * Contributions are more than welcome.
 * PMC-specific contributions may be pushed against [PMC's master branch](https://github.com/Penske-Media-Corp/varying-vagrant-vagrants/).
 * General contributions: Please submit pull requests against the [10up master branch](https://github.com/10up/varying-vagrant-vagrants/). Thanks!
@@ -21,19 +22,19 @@ Our fork has customizations specific to PMC, such as nginx configs and databases
 1. Install [Vagrant 1.2.5](http://downloads.vagrantup.com/tags/v1.2.5)
     * `vagrant` will now be available as a command in the terminal, try it out.
 1. Clone the Varying Vagrant Vagrants repository into a local directory
-    * `git clone git://github.com/Penske-Media-Corp/varying-vagrant-vagrants.git vvv`
+    * `git clone git://github.com/Penske-Media-Corp/varying-vagrant-vagrants.git ~/Sites/vvv`
 
 ### Before you run VVV for the first time
 1. Install the Vagrant HostsUpdater plugin
-	* From VVV's directory on your host machine: {{$ vagrant plugin install vagrant-hostsupdater}}
-	** This lets VVV set up your hosts file automatically when it starts
-1. Generate a new SSH key for Bitbucket using the script included in the PMC VVV fork: {{$ /path/to/vvv/bitbucket-gen-key.sh}}
+	* From VVV's directory on your host machine: `~/Sites/vvv $ vagrant plugin install vagrant-hostsupdater`
+		* This lets VVV set up your hosts file automatically when it starts
+1. Generate a new SSH key for Bitbucket using the script included in the PMC VVV fork: `$ ~/Sites/vvv/bitbucket-gen-key.sh`
 	* Have your Bitbucket username (generally the e-mail address you signed up with) and password handy, the script will need it to add the newly-generated key to your Bitbucket account.
 	* Don't bother with a passphrase for the SSH key. Although it's more secure, it's also more hassle.  The VVV automation assumes this Bitbucket key is generated without a passphrase.
 	* If you mess up, you'll need to remove the following files:
-	** {{~/.ssh/bitbucket.org_id_rsa}}
-	** {{~/.ssh/bitbucket.org_id_rsa.pub}}
-	** Find the entry in {{~/.ssh/config}} preceded by the comment {{# bitbucket.org CONFIG}} and remove it
+		* `~/.ssh/bitbucket.org_id_rsa`
+		* `~/.ssh/bitbucket.org_id_rsa.pub`
+		* Find the entry in `~/.ssh/config` preceded by the comment `# bitbucket.org CONFIG` and remove it
 
 
 ### The first time you run VVV
@@ -41,13 +42,13 @@ Our fork has customizations specific to PMC, such as nginx configs and databases
 1. Start the Vagrant environment
     * `vagrant up` in the directory where you cloned VVV - *omg magic happens*
     * Be patient, this could take a while, especially on the first run.
-1. Visit `http://192.168.50.4` for the VVV dashboard.
+1. Visit [http://192.168.50.4/](http://192.168.50.4/) for the VVV dashboard.
 1. Make sure everything works
-	* [Test wp-cli|http://wp-cli.org/#usage] and make sure it works
+	* [Test wp-cli](http://wp-cli.org/#usage) and make sure it works
 	* Test debugging (via xdebug) and make sure it works
-	** To turn on xdebug: ssh into your vagrant VM via $ {{vagrant ssh}} then turn on xdebug via $ {{xdebug_on}}
+		* To turn on xdebug: ssh into your vagrant VM via `~/Sites/vvv $ vagrant ssh` then turn on xdebug via `~/Sites/vvv $ xdebug_on`
 	* Test profiling (via xdebug) and make sure it works
-	** You can trigger the generation of profiler files by using the XDEBUG_PROFILE GET/POST parameter.  You'll know it works because you'll see the cachegrind.out files in your /tmp directory
+		* You can trigger the generation of profiler files by using the XDEBUG_PROFILE GET/POST parameter.  You'll know it works because you'll see the cachegrind.out files in your /tmp directory
 
 ### What Did That Do?
 
@@ -76,17 +77,7 @@ Now that you're up and running with a default configuration, start poking around
 
 ### Credentials and Such
 
-#### WordPress Default - Stable Release
-* URL: `http://local.wordpress.dev`
-* DB Name: `wordpress_default`
-* DB User: `wp`
-* DB Pass: `wp`
-* Admin User: `admin`
-* Admin Pass: `password`
-
-#### WordPress Trunk
-* URL: `http://local.wordpress-trunk.dev`
-* DB Name: `wordpress_trunk`
+#### WordPress
 * DB User: `wp`
 * DB Pass: `wp`
 * Admin User: `admin`
