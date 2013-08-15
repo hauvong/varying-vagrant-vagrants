@@ -72,8 +72,11 @@ $table_prefix = 'wp_';
  */
 define('WPLANG', '');
 
-define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] );
 define( 'WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
+define( 'WP_SITEURL', WP_HOME );
+define( 'WP_PLUGIN_DIR', '/srv/www/wordpress-plugins' );
+define( 'WP_PLUGIN_URL', WP_HOME . '/wp-content/plugins' );
+
 define( 'WP_DEBUG', true );
 define( 'SCRIPT_DEBUG', true );
 define( 'JETPACK_DEV_DEBUG', true );
