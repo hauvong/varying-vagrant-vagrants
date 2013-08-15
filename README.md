@@ -2,45 +2,10 @@
 
 Varying Vagrant Vagrants is an evolving [Vagrant](http://vagrantup.com) configuration focused on [WordPress](http://wordpress.org) development.
 
-* **Version**: 0.9-working
-* **Latest Stable**: [v0.8](https://github.com/10up/varying-vagrant-vagrants/tree/v0.8)
-* **Contributors**: [@jeremyfelt](http://github.com/jeremyfelt), [@carldanley](http://github.com/carldanley), [@ericmann](http://github.com/ericmann), [@lkwdwrd](http://github.com/lkwdwrd), [@TheLastCicada](http://github.com/TheLastCicada), [@tddewey](http://github.com/tddewey), [@johnpbloch](http://github.com/johnpbloch), [@kadamwhite](http://github.com/kadamwhite), [@scribu](http://github.com/scribu), [@danielbachhuber](http://github.com/danielbachhuber), [@tollmanz](http://github.com/tollmanz), [@mbijon](http://github.com/mbijon), [@markjaquith](http://github.com/markjaquith), [@curtismchale](http://github.com/curtismchale), [@Mamaduka](http://github.com/mamaduka), [@lgedeon](http://github.com/lgedeon), [@pmgarman](http://github.com/pmgarman), [@westonruter](http://github.com/westonruter), [@petemall](http://github.com/petemall), [@cmmarslender](http://github.com/cmmarslender), [@mintindeed](http://github.com/mintindeed)
-* **Contributing**: Contributions are more than welcome. Please submit pull requests against the [master branch](https://github.com/10up/varying-vagrant-vagrants/). Thanks!
-
-## Overview
-
-### The Purpose of Varying Vagrant Vagrants
-
-The primary goal of Varying Vagrant Vagrants (VVV) is to provide an approachable way for developers to work in an environment that matches a project's production environment as closely as possible.
-
-The default configuration provided by VVV is intended to match what [10up](http://10up.com) finds to be a common server setup when working with high traffic WordPress sites.
-
-### How to Use Varying Vagrant Vagrants
-
-#### VVV as a MAMP/XAMPP Replacement
-
-The best part is that VVV is ready to use as is. Clone or download the repository and `vagrant up` to get a sandboxed Ubuntu server on your computer with everything needed to develop a WordPress theme or plugin.
-
-Multiple projects can be developed at once in the same environment provided by VVV.
-* Use `wp-content/themes` in either the `wordpress-default` or `wordpress-trunk` directories to develop multiple themes using the same test content.
-* Use `wp-content/plugins` in either the `wordpress-default` or `wordpress-trunk` directories to develop a plugin the same way.
-* Install additional instances of WordPress in `/srv/www/` and configure a few pieces of VVV accordingly to work with the new installation.
-
-#### VVV as a Scaffold
-
-Entirely different server configurations can be created by modifying the files included with this repository.
-
-The existing configuration can also be extended significantly through the use of additional provisioning scripts, `provision-pre.sh` and `provision-post.sh`.
-
-It is not necessary to track the changes made to the main repository. Feel free to check this project out and then change everything to make it your own.
-
-### The Future of Varying Vagrant Vagrants
-
-Immediate goals for VVV include:
-
-* Continue to work towards a stable state of software and configuration included in the default provisioning.
-* Provide excellent and clear documentation throughout VVV to aid in both learning and scaffolding.
-* Provide a method for describing WordPress environment requirements at a project level so that developers joining a project can ramp up quickly. This includes code, database, and content files.
+* **Contributing**:
+* Contributions are more than welcome.
+* PMC-specific contributions may be pushed against [PMC's master branch](https://github.com/Penske-Media-Corp/varying-vagrant-vagrants/).
+* General contributions: Please submit pull requests against the [10up master branch](https://github.com/10up/varying-vagrant-vagrants/). Thanks!
 
 ## Getting Started
 
@@ -48,27 +13,41 @@ Immediate goals for VVV include:
 
 [Vagrant](http://vagrantup.com) is a "tool for building and distributing development environments". It works with virtualization software such as [VirtualBox](http://virtualbox.org) to provide a virtual machine that is sandboxed away from your local environment.
 
-### The First Vagrant Up
+Our fork has customizations specific to PMC, such as nginx configs and databases for all dev sites, required plugins, etc.
 
-1. Start with any operating system.
+### Installing VVV
 1. Install [VirtualBox 4.2.16](https://www.virtualbox.org/wiki/Downloads)
     * VVV (and Vagrant) has been tested with this version. If a newer version appears on the downloads page and you don't feel like being a guinea pig, check out the [older downloads](https://www.virtualbox.org/wiki/Download_Old_Builds_4_2) page and download the 4.2.16 release.
 1. Install [Vagrant 1.2.5](http://downloads.vagrantup.com/tags/v1.2.5)
     * `vagrant` will now be available as a command in the terminal, try it out.
 1. Clone the Varying Vagrant Vagrants repository into a local directory
-    * `git clone git://github.com/10up/varying-vagrant-vagrants.git vagrant-local`
-    * OR download and extract the repository master [zip file](https://github.com/10up/varying-vagrant-vagrants/archive/master.zip)
-1. Change into the new directory
-    * `cd vagrant-local`
-1. Start the Vagrant environment
-    * `vagrant up` - *omg magic happens*
-    * Be patient, this could take a while, especially on the first run.
-1. Add a record to your local machine's hosts file
-    * `192.168.50.4  local.wordpress.dev local.wordpress-trunk.dev`
-    * On -nix systems you can use: (note that location of host file after the >> may vary) `sudo sh -c 'echo "192.168.50.4 local.wordpress.dev local.wordpress-trunk.dev" >>/private/etc/hosts'`
-1. Visit `http://local.wordpress.dev/` in your browser for WordPress 3.5.1, `http://local.wordpress-trunk.dev` for WordPress trunk, or `http://192.168.50.4` for the default dashboard.
+    * `git clone git://github.com/Penske-Media-Corp/varying-vagrant-vagrants.git vvv`
 
-Fancy, yeah?
+### Before you run VVV for the first time
+1. Install the Vagrant HostsUpdater plugin
+	* From VVV's directory on your host machine: {{$ vagrant plugin install vagrant-hostsupdater}}
+	** This lets VVV set up your hosts file automatically when it starts
+1. Generate a new SSH key for Bitbucket using the script included in the PMC VVV fork: {{$ /path/to/vvv/bitbucket-gen-key.sh}}
+	* Have your Bitbucket username (generally the e-mail address you signed up with) and password handy, the script will need it to add the newly-generated key to your Bitbucket account.
+	* Don't bother with a passphrase for the SSH key. Although it's more secure, it's also more hassle.  The VVV automation assumes this Bitbucket key is generated without a passphrase.
+	* If you mess up, you'll need to remove the following files:
+	** {{~/.ssh/bitbucket.org_id_rsa}}
+	** {{~/.ssh/bitbucket.org_id_rsa.pub}}
+	** Find the entry in {{~/.ssh/config}} preceded by the comment {{# bitbucket.org CONFIG}} and remove it
+
+
+### The first time you run VVV
+1. Change into the new directory
+1. Start the Vagrant environment
+    * `vagrant up` in the directory where you cloned VVV - *omg magic happens*
+    * Be patient, this could take a while, especially on the first run.
+1. Visit `http://192.168.50.4` for the VVV dashboard.
+1. Make sure everything works
+	* [Test wp-cli|http://wp-cli.org/#usage] and make sure it works
+	* Test debugging (via xdebug) and make sure it works
+	** To turn on xdebug: ssh into your vagrant VM via $ {{vagrant ssh}} then turn on xdebug via $ {{xdebug_on}}
+	* Test profiling (via xdebug) and make sure it works
+	** You can trigger the generation of profiler files by using the XDEBUG_PROFILE GET/POST parameter.  You'll know it works because you'll see the cachegrind.out files in your /tmp directory
 
 ### What Did That Do?
 
@@ -84,10 +63,8 @@ On future runs of `vagrant up`, the pre-packaged box will already be cached on y
 
 Now that you're up and running with a default configuration, start poking around and modifying things.
 
-1. Access the server with `vagrant ssh` from your `vagrant-local` directory. You can do pretty much anything you would do with a standard Ubuntu installation on a full server.
+1. Access the server with `vagrant ssh` from your `vvv` directory. You can do pretty much anything you would do with a standard Ubuntu installation on a full server.
     * If you are on a Windows PC, you may need to install additional software for this to work seamlessly. A terminal program such as [Putty](www.chiark.greenend.org.uk/~sgtatham/putty/download.html) will provide access immediately.
-1. Destroy the box and start from scratch with `vagrant destroy`
-    * As explained before, the initial 280MB box file will be cached on your machine. the next `vagrant up` command will initiate the complete provisioning process again.
 1. Power off the box with `vagrant halt` or suspend it with `vagrant suspend`. If you suspend it, you can bring it back quickly with `vagrant resume`, if you halt it, you can bring it back with `vagrant up`.
 1. Start modifying and adding local files to fit your needs.
     * The network configuration picks an IP of 192.168.50.4. This works if you are *not* on the 192.168.50.x sub domain, it could cause conflicts on your existing network if you *are* on a 192.168.50.x sub domain already. You can configure any IP address in the `Vagrantfile` and it will be used on the next `vagrant up`
@@ -124,6 +101,10 @@ Now that you're up and running with a default configuration, start poking around
 * DB Name: `wordpress_unit_tests`
 * DB User: `wp`
 * DB Pass: `wp`
+
+#### APC Dashboard
+* Username: `apc`
+* Password: `apc`
 
 ### What do you get?
 
