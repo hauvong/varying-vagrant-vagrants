@@ -237,7 +237,12 @@ do
 			printf "\nInstalling plugin: $PLUGIN\n"
 			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
+
+		PLUGIN_STATUS=`wp --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
+		if [ " Active" != "$PLUGIN_STATUS" ]; then
 		printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
 		wp --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
+		fi
+
 	done
 done
