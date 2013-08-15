@@ -100,7 +100,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-plugins...\n"
-	su -c 'cd /srv/www/vip/pmc-plugins; git pull --rebase origin master' - vagrant
+	su -c 'cd /srv/www/vip/pmc-plugins; git pull' - vagrant
 fi
 
 # pmc-tvline-mobile theme
@@ -115,7 +115,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-tvline-mobile theme...\n"
-	su -c 'cd /srv/www/vip/pmc-tvline-mobile; git pull --rebase origin master' - vagrant
+	su -c 'cd /srv/www/vip/pmc-tvline-mobile; git pull' - vagrant
 fi
 
 # pmc-master theme
@@ -130,7 +130,7 @@ then
 	fi
 else
 	printf "\nUpdating pmc-master theme...\n"
-	su -c 'cd /srv/www/vip/pmc-master; git pull --rebase origin master' - vagrant
+	su -c 'cd /srv/www/vip/pmc-master; git pull' - vagrant
 fi
 
 # Set up shared plugins directory
