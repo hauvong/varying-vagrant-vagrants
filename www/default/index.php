@@ -11,6 +11,7 @@
 	<li><a href="database-admin/">phpMyAdmin</a></li>
 	<li><a href="memcached-admin/">phpMemcachedAdmin</a></li>
 	<li><a href="webgrind/">Webgrind</a></li>
+	<li><a href="apc/">APC</a><br />Username: apc<br />Password: apc</li>
 	<li><a href="phpinfo/">PHP Info</a></li>
 </ul>
 </body>
