@@ -187,6 +187,8 @@ PLUGINS=(
 for ROW in "${PMC_SITES[@]}"
 do
 	export HTTP_HOST=""
+	export HTTP_USER_AGENT="WP_CLI"
+
 	IFS=',' read -ra SITE_DATA <<< "$ROW"
 	I=0
 	for DATA in "${SITE_DATA[@]}"; do
