@@ -1,2 +1,2 @@
 config.vm.hostname = "local.wordpress-trunk.dev"
-config.hostsupdater.aliases = ["local.wordpress.dev", "awardsline.dev", "bgr.dev", "deadline.dev", "hollywoodlife.dev", "tvline.dev", "variety.dev", "variety411.dev"]
+config.hostsupdater.aliases = ["local.wordpress.dev", "local.awardsline.com", "local.bgr.com", "local.deadline.com", "local.hollywoodlife.com", "local.tvline.com", "local.variety.com", "local.variety411.com"]
