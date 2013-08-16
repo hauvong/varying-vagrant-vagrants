@@ -54,83 +54,91 @@ if [ ! `which compass` ]; then
     gem install compass --version 0.11.1;
 fi;
 
-# Base mobile theme for VIP
-if [ ! -d /srv/www/wordpress-trunk/wp-content/themes/pub/wp-mobile ]
+# setup local wp structure
+if [ ! -d /srv/www/htdocs-local ]
 then
-	printf "\nDownloading wp-mobile theme...\n"
-	mkdir /srv/www/wordpress-trunk/wp-content/themes/pub
-	svn co https://wpcom-themes.svn.automattic.com/wp-mobile/ /srv/www/wordpress-trunk/wp-content/themes/pub/wp-mobile
-else
-	printf "\nUpdating wp-mobile theme...\n"
-	svn up /srv/www/wordpress-trunk/wp-content/themes/pub/wp-mobile
+	mkdir /srv/www/htdocs-local
+	mkdir /srv/www/htdocs-local/wp-content
+	mkdir /srv/www/htdocs-local/wp-content/themes
+	mkdir /srv/www/htdocs-local/wp-content/themes/pub
+	mkdir /srv/www/htdocs-local/wp-content/themes/vip
+	ln -sfT /srv/www/wordpress-trunk /srv/www/htdocs-local/wordpress
+	ln -sfT /srv/www/wordpress-plugins /srv/www/htdocs-local/wp-content/plugins
+	ln -sfT /srv/www/wordpress-uploads /srv/www/htdocs-local/wp-content/uploads
+	ln -sfT /srv/www/wordpress-blogs.dir /srv/www/htdocs-local/wp-content/blogs.dir
+	ln -sfT /srv/config/wordpress-config/mu-plugins /srv/www/htdocs-local/wp-content/mu-plugins
+	ln -sfT /srv/config/wordpress-config/wp-config.php /srv/www/htdocs-local/wp-config.php
+	ln -sfT /srv/www/wordpress-trunk/wp-load.php /srv/www/htdocs-local/wp-load.php
 fi
 
-# VIP directory for VIP plugins and themes
-if [ ! -d /srv/www/vip ]
+# Base mobile theme for VIP
+if [ ! -d /srv/www/htdocs-local/wp-content/themes/pub/wp-mobile ]
 then
-	printf "\nCreating and linking VIP directory...\n"
-	mkdir /srv/www/vip
-	ln -sf /srv/www/vip /srv/www/wordpress-trunk/wp-content/themes/vip
+	printf "\nDownloading wp-mobile theme...\n"
+	svn co https://wpcom-themes.svn.automattic.com/wp-mobile/ /srv/www/htdocs-local/wp-content/themes/pub/wp-mobile
+else
+	printf "\nUpdating wp-mobile theme...\n"
+	svn up /srv/www/htdocs-local/wp-content/themes/pub/wp-mobile
 fi
 
 # VIP plugins
-if [ ! -d /srv/www/vip/plugins ]
+if [ ! -d /srv/www/htdocs-local/wp-content/themes/vip/plugins ]
 then
 	printf "\nDownloading WordPress.com VIP plugins...\n"
 	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/vip/plugins' - vagrant
+		su -c 'git clone git@bitbucket.org:penskemediacorp/wordpress-vip-plugins.git /srv/www/htdocs-local/wp-content/themes/vip/plugins' - vagrant
 	fi
 else
 	printf "\nUpdating WordPress.com VIP plugins...\n"
-	su -c 'cd /srv/www/vip/plugins; git pull --rebase origin master' - vagrant
+	su -c 'cd /srv/www/htdocs-local/wp-content/themes/vip/plugins; git pull --rebase origin master' - vagrant
 fi
 
 # pmc-plugins
-if [ ! -d /srv/www/vip/pmc-plugins ]
+if [ ! -d /srv/www/htdocs-local/wp-content/themes/vip/pmc-plugins ]
 then
 	printf "\nDownloading pmc-plugins...\n"
 	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-plugins.git /srv/www/vip/pmc-plugins' - vagrant
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-plugins.git /srv/www/htdocs-local/wp-content/themes/vip/pmc-plugins' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-plugins...\n"
-	su -c 'cd /srv/www/vip/pmc-plugins; git pull' - vagrant
+	su -c 'cd /srv/www/htdocs-local/wp-content/themes/vip/pmc-plugins; git pull' - vagrant
 fi
 
 # pmc-tvline-mobile theme
-if [ ! -d /srv/www/vip/pmc-tvline-mobile ]
+if [ ! -d /srv/www/htdocs-local/wp-content/themes/vip/pmc-tvline-mobile ]
 then
 	printf "\nDownloading pmc-tvline-mobile theme...\n"
 	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-tvline-mobile.git /srv/www/vip/pmc-tvline-mobile' - vagrant
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-tvline-mobile.git /srv/www/htdocs-local/wp-content/themes/vip/pmc-tvline-mobile' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-tvline-mobile theme...\n"
-	su -c 'cd /srv/www/vip/pmc-tvline-mobile; git pull' - vagrant
+	su -c 'cd /srv/www/htdocs-local/wp-content/themes/vip/pmc-tvline-mobile; git pull' - vagrant
 fi
 
 # pmc-master theme
-if [ ! -d /srv/www/vip/pmc-master ]
+if [ ! -d /srv/www/htdocs-local/wp-content/themes/vip/pmc-master ]
 then
 	printf "\nDownloading pmc-master theme...\n"
 	if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 	then
 		printf "\nSkipping this step, SSH key has not been created.\n"
 	else
-		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-master.git /srv/www/vip/pmc-master' - vagrant
+		su -c 'git clone git@bitbucket.org:penskemediacorp/pmc-master.git /srv/www/htdocs-local/wp-content/themes/vip/pmc-master' - vagrant
 	fi
 else
 	printf "\nUpdating pmc-master theme...\n"
-	su -c 'cd /srv/www/vip/pmc-master; git pull' - vagrant
+	su -c 'cd /srv/www/htdocs-local/wp-content/themes/vip/pmc-master; git pull' - vagrant
 fi
 
 # Set up shared plugins directory
@@ -140,8 +148,8 @@ then
 	mkdir /srv/www/wordpress-plugins
 	rm -rf /srv/www/wordpress-trunk/wp-content/plugins
 	rm -rf /srv/www/wordpress-default/wp-content/plugins
-	ln -sf /srv/www/wordpress-plugins /srv/www/wordpress-trunk/wp-content/plugins
-	ln -sf /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content/plugins
+	ln -sfT /srv/www/wordpress-plugins /srv/www/wordpress-trunk/wp-content/plugins
+	ln -sfT /srv/www/wordpress-plugins /srv/www/wordpress-default/wp-content/plugins
 	svn up /srv/www/wordpress-trunk/wp-content/plugins
 	svn up /srv/www/wordpress-default/wp-content/plugins
 fi
@@ -149,20 +157,20 @@ fi
 # Set up mu-plugins
 if [ -L /srv/www/wordpress-trunk/wp-content/mu-plugins ]; then
 	printf "\nLinking mu-plugins...\n"
-	ln -sf /srv/config/wordpress-config/mu-plugins /srv/www/wordpress-trunk/wp-content/mu-plugins
+	ln -sfT /srv/config/wordpress-config/mu-plugins /srv/www/wordpress-trunk/wp-content/mu-plugins
 fi
 
 printf "\nUpdating plugins...\n"
 wp --path=/srv/www/wordpress-trunk/ plugin update-all
 
 PMC_SITES=(
-	"bgr,bgr,BGR,bgr.dev"
-	"pmc-411,pmc-411,Variety411,variety411.dev"
-	"pmc-awardsline,pmc-awardsline,Awardsline,awardsline.dev"
-	"pmc-deadline,pmc-deadline,Deadline,deadline.dev"
-	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,hollywoodlife.dev"
-	"pmc-tvline,pmc-tvline,TVLine,tvline.dev"
-	"pmc-variety,pmc-variety,Variety,variety.dev"
+	"bgr,bgr,BGR,local.bgr.com,wp_local_bgr"
+	"pmc-411,pmc-411,Variety411,local.variety411.com,wp_local_variety411"
+	"pmc-awardsline,pmc-awardsline,Awardsline,local.awardsline.com,wp_local_awardsline"
+	"pmc-deadline,pmc-deadline,Deadline,local.deadline.com,wp_local_deadline"
+	"pmc-hollywoodlife,pmc-hollywoodlife,HollywoodLife,local.hollywoodlife.com,wp_local_hollywoodlife"
+	"pmc-tvline,pmc-tvline,TVLine,local.tvline.com,wp_local_tvline"
+	"pmc-variety,pmc-variety,Variety,local.variety.com,wp_local_variety"
 	)
 PLUGINS=(
 	"debug-bar-console"
@@ -201,33 +209,37 @@ do
 		elif [ $I == 3 ]; then
 			DOMAIN="$DATA"
 			export HTTP_HOST=$DOMAIN
+		elif [ $I == 4 ]; then
+			DBNAME="$DATA"
 		fi
 		let I++
 	done
 
-	if [ ! -d "/srv/www/vip/$DESTINATION_DIR" ]
+	if [ ! -d "/srv/www/htdocs-local/wp-content/themes/vip/$DESTINATION_DIR" ]
 	then
 		printf "\nDownloading $REPO theme...\n"
 		if [ ! -f /home/vagrant/.ssh/bitbucket.org_id_rsa.pub ]
 		then
 			printf "\nSkipping this step, SSH key has not been created.\n"
 		else
-			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/vip/'$DESTINATION_DIR'' - vagrant
+			echo "create database IF NOT EXISTS $DBNAME; GRANT ALL PRIVILEGES ON $DBNAME.* TO 'wp'@'localhost'; FLUSH PRIVILEGES; " | mysql -uroot -pblank
+			
+			su -c 'git clone git@bitbucket.org:penskemediacorp/'$REPO'.git /srv/www/htdocs-local/wp-content/themes/vip/'$DESTINATION_DIR'' - vagrant
 			wp core install --path=/srv/www/wordpress-trunk/ --url=$DOMAIN --quiet --title="$SITE_NAME" --admin_name=admin --admin_email="admin@local.dev" --admin_password="password"
 
 			# Install theme unit test data
 			# As of Aug 14 2013 the theme-test command can't deal with global flags like --path, it must be run in the WordPress root folder.
 			printf "\nInstalling theme unit test data for $DOMAIN...\n"
 			cd /srv/www/wordpress-trunk/
-			wp theme-test install --option=skip --menus
+			wp --url=$DOMAIN theme-test install --option=skip --menus
 
 			# Activate the theme
 			printf "\nActivating $REPO theme on $DOMAIN...\n"
-			wp theme activate vip/$DESTINATION_DIR
+			wp --url=$DOMAIN theme activate vip/$DESTINATION_DIR
 		fi
 	else
 		printf "\nUpdating $REPO theme...\n"
-		su -c 'cd /srv/www/vip/'$DESTINATION_DIR'; git pull' - vagrant
+		su -c 'cd /srv/www/htdocs-local/wp-content/themes/vip/'$DESTINATION_DIR'; git pull' - vagrant
 	fi
 
 	for PLUGIN in "${PLUGINS[@]}"
@@ -235,14 +247,15 @@ do
 		if [ ! -d "/srv/www/wordpress-plugins/$PLUGIN" ]
 		then
 			printf "\nInstalling plugin: $PLUGIN\n"
-			wp --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
+			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin install $PLUGIN
 		fi
 
 		PLUGIN_STATUS=`wp --path=/srv/www/wordpress-trunk/ plugin status $PLUGIN | grep "Status:" | cut -d ':' -f2`
 		if [ " Active" != "$PLUGIN_STATUS" ]; then
 			printf "\nActivating plugin $PLUGIN for site $DOMAIN\n"
-			wp --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
+			wp --url=$DOMAIN --path=/srv/www/wordpress-trunk/ plugin activate $PLUGIN
 		fi
 
 	done
 done
+

@@ -15,10 +15,60 @@ if ( ! isset($_SERVER['HTTP_HOST']) ) {
 	$_SERVER['HTTP_HOST'] = 'local.wordpress-trunk.dev';
 }
 
+if ( ! defined( 'WP_SITEURL' ) ) {
+	// Backwards compatibility for old qa environments, can be removed after Aug 1 2013
+	if ( ! file_exists( $_SERVER['DOCUMENT_ROOT'] . '/wordpress' ) ) {
+		$wp_siteurl = $_SERVER['HTTP_HOST'];
+	} else {
+		$wp_siteurl = $_SERVER['HTTP_HOST'] . '/wordpress';
+	}
+	define( 'WP_SITEURL', 'http://' . $wp_siteurl );
+}
+
+define( 'WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
+
+if ( ! defined( 'WP_CONTENT_DIR' ) ) {
+	define( 'WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content' );
+}
+
+if ( ! defined( 'WP_CONTENT_URL' ) ) {
+	define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
+}
+
+if ( ! defined( 'WP_PLUGIN_DIR' ) ) {
+	define( 'WP_PLUGIN_DIR', '/srv/www/wordpress-plugins' );
+}
+
+if ( ! defined( 'WP_PLUGIN_URL' ) ) {
+	define( 'WP_PLUGIN_URL', WP_HOME . '/wp-content/plugins' );
+}
+
+if ( ! defined( 'WPMU_PLUGIN_DIR' ) ) {
+	define( 'WPMU_PLUGIN_DIR', '/srv/config/wordpress-config/mu-plugins' );
+}
+
+if ( ! defined( 'WPMU_PLUGIN_URL' ) ) {
+	define( 'WPMU_PLUGIN_URL', WP_HOME . '/wp-content/mu-plugins' );
+}
+
 if ( in_array( $_SERVER['HTTP_HOST'], array( 'local.wordpress-trunk.dev', 'local.wordpress.dev' ) ) ) {
 	$db_name = 'wordpress_trunk';
 } else {
-	$db_name = str_replace( '.', '_', $_SERVER['HTTP_HOST'] );
+	$tokens = preg_split('/\\.|\\-/', $_SERVER['HTTP_HOST'] );
+	$i = count($tokens);
+	switch ($i)
+	{
+		case 0:
+			break;
+		case 1:
+		case 2:
+			$db_name = $tokens[0];
+			break;
+		default:
+			$db_name = "{$tokens[$i-3]}_{$tokens[$i-2]}";
+			break;
+	}
+	$db_name = "wp_" . $db_name;
 }
 define( 'DB_NAME', $db_name );
 
@@ -71,11 +121,6 @@ $table_prefix = 'wp_';
  * language support.
  */
 define('WPLANG', '');
-
-define( 'WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
-define( 'WP_SITEURL', WP_HOME );
-define( 'WP_PLUGIN_DIR', '/srv/www/wordpress-plugins' );
-define( 'WP_PLUGIN_URL', WP_HOME . '/wp-content/plugins' );
 
 define( 'WP_DEBUG', true );
 define( 'SCRIPT_DEBUG', true );
